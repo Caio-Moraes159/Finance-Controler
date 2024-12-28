@@ -1,8 +1,15 @@
 import { Button } from "../_components/ui/button";
 import Image from "next/image";
 import { LogInIcon } from "lucide-react";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const { userId } = await auth();
+  if (userId) {
+    redirect("/");
+  }
   return (
     <div className="h-full grid grid-cols-2 bg-gray-900">
       {/* ESQUERDA */}
@@ -23,10 +30,12 @@ const LoginPage = () => {
           IA para monitorar suas movimentações financeiras, e oferecer insights
           personalizados, facilitando o controle do seu orçamento.
         </p>
-        <Button variant="outline" className="bg-gray-700">
-          <LogInIcon className="mr-2" />
-          Fazer login ou criar conta
-        </Button>
+        <SignInButton>
+          <Button variant="outline" className="bg-gray-700">
+            <LogInIcon className="mr-2" />
+            Fazer login ou criar conta
+          </Button>
+        </SignInButton>
       </div>
       {/* DIREITA */}
       <div className="relative w-full-h-full">
