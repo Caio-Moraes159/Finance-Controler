@@ -8,18 +8,10 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <nav className="flex justify-between pr-4">
+    <nav className="flex justify-between border-b border-solid px-8 py-4">
       {/* ESQUERDA */}
-      <div className="flex items-center gap-6 border-b border-solid px-8 py-4">
-        <Link href="/">
-          <Image
-            src="/logo.svg"
-            width={40}
-            height={10}
-            alt="Finance Controler"
-          />
-        </Link>
-        {/* <h1 className="text-2xl font-bold">Finance Controler</h1> */}
+      <div className="flex items-center gap-10">
+        <Image src="/logo.svg" width={40} height={10} alt="Finance AI" />
         <Link
           href="/"
           className={
@@ -31,9 +23,9 @@ const Navbar = () => {
           Dashboard
         </Link>
         <Link
-          href="/transaction"
+          href="/transactions"
           className={
-            pathname === "/transaction"
+            pathname === "/transactions"
               ? "font-bold text-primary"
               : "text-muted-foreground"
           }
