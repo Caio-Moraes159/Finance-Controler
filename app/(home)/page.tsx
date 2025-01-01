@@ -1,23 +1,21 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Navbar from "../_components/navbar";
-import SumaryCards from "./_components/summary-cards";
-import TimeSelect from "./time-select";
+import SummaryCards from "./_components/summary-cards";
 import { isMatch } from "date-fns";
-
+import TimeSelect from "./_components/time-select";
 interface HomeProps {
   searchParams: {
     month: string;
   };
 }
-
 const Home = async ({ searchParams: { month } }: HomeProps) => {
   const { userId } = await auth();
   if (!userId) {
     redirect("/login");
   }
-  const monthIsValid = !month || !isMatch(month, "MM");
-  if (monthIsValid) {
+  const monthIsInvalid = !month || !isMatch(month, "MM");
+  if (monthIsInvalid) {
     redirect("?month=01");
   }
   return (
@@ -28,10 +26,9 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <TimeSelect />
         </div>
-        <SumaryCards month={month} />
+        <SummaryCards month={month} />
       </div>
     </>
   );
 };
-
 export default Home;

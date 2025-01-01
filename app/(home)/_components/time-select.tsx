@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Select,
   SelectContent,
@@ -8,7 +7,6 @@ import {
   SelectValue,
 } from "@/app/_components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
-
 const MONTH_OPTIONS = [
   { value: "01", label: "January" },
   { value: "02", label: "February" },
@@ -23,7 +21,6 @@ const MONTH_OPTIONS = [
   { value: "11", label: "November" },
   { value: "12", label: "December" },
 ];
-
 const TimeSelect = () => {
   const { push } = useRouter();
   const searchParams = useSearchParams();
@@ -49,5 +46,4 @@ const TimeSelect = () => {
     </Select>
   );
 };
-
 export default TimeSelect;

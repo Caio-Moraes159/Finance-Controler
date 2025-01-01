@@ -1,20 +1,18 @@
 import AddTransactionButton from "@/app/_components/add-transaction-button";
 import { Card, CardContent, CardHeader } from "@/app/_components/ui/card";
 import { ReactNode } from "react";
-
-interface SumaryCardProps {
+interface SummaryCardProps {
   icon: ReactNode;
   title: string;
   amount: number;
   size?: "small" | "large";
 }
-
-const SumaryCard = ({
+const SummaryCard = ({
   icon,
   title,
   amount,
   size = "small",
-}: SumaryCardProps) => {
+}: SummaryCardProps) => {
   return (
     <Card>
       <CardHeader className="flex-row items-center gap-4">
@@ -34,11 +32,9 @@ const SumaryCard = ({
             currency: "BRL",
           }).format(amount)}
         </p>
-
         {size === "large" && <AddTransactionButton />}
       </CardContent>
     </Card>
   );
 };
-
-export default SumaryCard;
+export default SummaryCard;
