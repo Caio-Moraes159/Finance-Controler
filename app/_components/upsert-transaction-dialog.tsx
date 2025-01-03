@@ -35,7 +35,7 @@ import {
 } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { upsertTransaction } from "../_actions/add-transaction";
+import { upsertTransaction } from "../_actions/upsert-transaction";
 import {
   TRANSACTION_CATEGORY_OPTIONS,
   TRANSACTION_PAYMENT_METHOD_OPTIONS,
@@ -96,7 +96,15 @@ const UpsertTransactionDialog = ({
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      await upsertTransaction({ ...data, id: transactionId });
+      console.log(data);
+
+      if (!transactionId) {
+        console.error(
+          "ID da transação não definido. Criando uma nova transação...",
+        );
+      }
+
+      await upsertTransaction({ ...data, id: transactionId ?? undefined });
       setIsOpen(false);
       form.reset();
     } catch (error) {
